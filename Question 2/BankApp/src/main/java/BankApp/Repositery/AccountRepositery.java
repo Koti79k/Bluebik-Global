@@ -7,5 +7,5 @@ import BankApp.Entity.Account;
 
 @Repository
 public interface AccountRepositery extends JpaRepository<Account, Long>{
-
+    
 }

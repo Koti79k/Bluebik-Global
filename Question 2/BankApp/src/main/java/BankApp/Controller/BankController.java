@@ -1,8 +1,11 @@
 package BankApp.Controller;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import BankApp.Entity.Account;
 import BankApp.Entity.User;
-import BankApp.Exception.UserNotFountException;
+import BankApp.Exception.NotFountException;
 import BankApp.Service.BankService;
 
 @RestController
@@ -26,8 +29,21 @@ public class BankController {
 	}
 	
 	@PostMapping("/account/{id}")
-	public ResponseEntity<Account> saveAccountDeatails(@RequestParam("id") Long id,@RequestBody Account account) throws UserNotFountException{
+	public ResponseEntity<Account> saveAccountDeatails(@RequestParam("id") Long id,@RequestBody Account account) throws NotFountException
+	{
 		Account save = bService.saveAccountDetails(account, id);
 		return new ResponseEntity<Account>(save,HttpStatus.CREATED);
 	}
+	
+	@PostMapping("/credit")
+	public void credit(@RequestParam Long accound_id, @RequestParam Long user_id, @RequestParam BigDecimal amount) throws NotFountException{		
+			bService.credit(user_id, accound_id, amount);				
+	}
+	
+	@PostMapping("/debit")
+	public void debit(@RequestParam Long accound_id, @RequestParam Long user_id, @RequestParam BigDecimal amount) throws NotFountException{	
+			bService.debit(user_id, accound_id, amount);
+	}
+	
+	
 }

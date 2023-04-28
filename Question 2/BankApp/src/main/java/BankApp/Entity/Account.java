@@ -1,5 +1,6 @@
 package BankApp.Entity;
 
+import java.math.BigDecimal;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -25,7 +26,7 @@ public class Account {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private Double balance;
+	private BigDecimal balance;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="user_account",joinColumns = @JoinColumn(name="account_id"),

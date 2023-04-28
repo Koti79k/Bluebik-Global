@@ -11,8 +11,8 @@ import org.springframework.web.context.request.WebRequest;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-	@ExceptionHandler(UserNotFountException.class)
-	public ResponseEntity<MyErrorDetails> UserExceptionHandler(UserNotFountException se, WebRequest req){
+	@ExceptionHandler(NotFountException.class)
+	public ResponseEntity<MyErrorDetails> UserExceptionHandler(NotFountException se, WebRequest req){
 		
 		
 		MyErrorDetails err= new MyErrorDetails();
