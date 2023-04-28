@@ -1,6 +1,7 @@
 package BankApp.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import BankApp.Entity.Account;
 import BankApp.Entity.User;
@@ -11,4 +12,6 @@ public interface BankService {
    public Account saveAccountDetails(Account account, Long userId) throws NotFountException;
    public void credit(Long user_id, Long account_id, BigDecimal amount) throws NotFountException;
    public void debit(Long user_id, Long account_id, BigDecimal amount) throws NotFountException;
+   public List<Account> getAllAccountDetails() throws NotFountException;
+   public List<User> getAllUserDetails() throws NotFountException;
 }

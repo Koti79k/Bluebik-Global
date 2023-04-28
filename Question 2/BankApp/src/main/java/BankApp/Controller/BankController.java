@@ -1,10 +1,12 @@
 package BankApp.Controller;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -45,5 +47,16 @@ public class BankController {
 			bService.debit(user_id, accound_id, amount);
 	}
 	
+	@GetMapping("/accounts")
+	public ResponseEntity<List<Account>> getAllAccountDetails() throws NotFountException{
+		List<Account> L1 = bService.getAllAccountDetails();
+		return new ResponseEntity<List<Account>>(L1,HttpStatus.ACCEPTED);
+	}
+	
+	@GetMapping("/users")
+	public ResponseEntity<List<User>> getAllUserDetails() throws NotFountException{
+		List<User> L1 = bService.getAllUserDetails();
+		return new ResponseEntity<List<User>>(L1,HttpStatus.ACCEPTED);
+	}
 	
 }

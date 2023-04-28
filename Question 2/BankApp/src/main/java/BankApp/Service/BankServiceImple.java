@@ -1,6 +1,7 @@
 package BankApp.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,6 +83,29 @@ public class BankServiceImple implements BankService{
 	       account.setBalance(newBalance);
 	       aRepo.save(account);
 	       System.out.println("Successfully Withdraw From Account ...");
+	}
+
+	@Override
+	public List<Account> getAllAccountDetails() throws NotFountException{
+		List<Account> L1= aRepo.findAll();
+		if(L1!=null) {
+			return L1;
+		}
+		else {
+			throw new NotFountException("Accounts Not Found");
+		}
+	    
+	}
+
+	@Override
+	public List<User> getAllUserDetails() throws NotFountException {
+		List<User> L1= uRepo.findAll();
+		if(L1!=null) {
+			return L1;
+		}
+		else {
+			throw new NotFountException("Users Not Found");
+		}
 	}
 
 }
